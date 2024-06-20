@@ -1,5 +1,6 @@
 package com.project.member_management.member.entity;
 
+import com.project.member_management.member.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,14 @@ public class MemberEntity {
 
     @Column
     private String memberAddress;
+
+    public static MemberEntity toMemberEntity(MemberDTO memberDTO){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberAge(memberDTO.getMemberAge());
+        memberEntity.setMemberAddress(memberDTO.getMemberAddress());
+        return memberEntity;
+    }
 }
