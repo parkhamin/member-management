@@ -6,6 +6,8 @@ import com.project.member_management.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +36,16 @@ public class MemberService {
         } else { // 데이터베이스에서 로그인하려고 하는 사용자가 없는 경우
             return null;
         }
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+
+        for(MemberEntity memberEntity: memberEntityList){
+            memberDTOList.add(MemberDTO.toMemberDTO(memberEntity));
+        }
+
+        return memberDTOList;
     }
 }
