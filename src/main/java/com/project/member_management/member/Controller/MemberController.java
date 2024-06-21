@@ -86,4 +86,10 @@ public class MemberController {
         return "redirect:/member/" + memberDTO.getId();
     }
 
+    @GetMapping("/member/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "index";
+    }
+
 }
