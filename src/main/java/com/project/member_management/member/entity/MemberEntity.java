@@ -38,4 +38,15 @@ public class MemberEntity {
         memberEntity.setMemberAddress(memberDTO.getMemberAddress());
         return memberEntity;
     }
+
+    public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setId((memberDTO.getId()));
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberAge(memberDTO.getMemberAge());
+        memberEntity.setMemberAddress(memberDTO.getMemberAddress());
+        return memberEntity;
+    }
 }
