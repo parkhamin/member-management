@@ -39,6 +39,9 @@ public class MemberEntity {
         return memberEntity;
     }
 
+    // 둘 다 memberRepository.save() 메서드지만
+    // 담아주는 entity 객체에 id가 없는 경우에는 db에 저장을,
+    // id가 있는 경우에는 업데이트를 해준다.
     public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO){
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId((memberDTO.getId()));

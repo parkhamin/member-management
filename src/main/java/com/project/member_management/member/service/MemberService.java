@@ -40,10 +40,10 @@ public class MemberService {
 
     public List<MemberDTO> findAll() {
         List<MemberEntity> memberEntityList = memberRepository.findAll();
-        List<MemberDTO> memberDTOList = new ArrayList<>();
+        List<MemberDTO> memberDTOList = new ArrayList<>(); // 화면에 뿌려주기 위한 dto 객체들을 담을 리스트 생성
 
-        for(MemberEntity memberEntity: memberEntityList){
-            memberDTOList.add(MemberDTO.toMemberDTO(memberEntity));
+        for(MemberEntity memberEntity: memberEntityList){ // db에서 가져온 entity 객체들을 for 반복문을 통해
+            memberDTOList.add(MemberDTO.toMemberDTO(memberEntity)); // dto 객체로 변환해 리스트에 새로 담아줌
         }
 
         return memberDTOList;
@@ -51,9 +51,9 @@ public class MemberService {
 
     public MemberDTO findByID(Long id) {
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
-        if (optionalMemberEntity.isPresent()){
-            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
-        } else {
+        if (optionalMemberEntity.isPresent()){ // id를 통해 db에서 조회한 결과가 있는 경우
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get()); // dto로 변환한 후 리턴
+        } else { // 특정 id를 가진 회원이 db에 없는 경우
             return null;
         }
     }
@@ -64,9 +64,9 @@ public class MemberService {
 
     public MemberDTO updateForm(String myEmail) {
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(myEmail);
-        if (optionalMemberEntity.isPresent()){
-            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
-        } else {
+        if (optionalMemberEntity.isPresent()){ // 특정 이메일을 가진 회원이 db에 있는 경우
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get()); // dto로 변환한 후 리턴
+        } else { // 특정 이메일을 가진 회원이 db에 없는 경우
             return null;
         }
     }
